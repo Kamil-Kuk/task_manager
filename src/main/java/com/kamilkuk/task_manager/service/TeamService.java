@@ -15,24 +15,24 @@ public class TeamService {
 
     private final TeamRepository teamRepository;
 
-    public Team get(Long id){
+    public Team get(Long id) {
         return teamRepository.findById(id)
-                .orElseThrow(()->new NoSuchElementException());
+                .orElseThrow(() -> new NoSuchElementException());
     }
 
-    public Team save(Team team){
+    public Team save(Team team) {
         return teamRepository.save(team);
     }
 
-    public Team update(Team team){
+    public Team update(Team team) {
         return teamRepository.save(team);
     }
 
-    public void remove(Long id){
+    public void remove(Long id) {
         teamRepository.delete(get(id));
     }
 
-    public List<Team> getAll(){
+    public List<Team> getAll() {
         return teamRepository.findAll();
     }
 }

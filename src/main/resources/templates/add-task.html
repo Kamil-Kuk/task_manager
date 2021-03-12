@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/shards.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/index">Home</a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/show-tasks">Task list</a>
+                <a class="nav-link" href="/show-employees">Employee list</a>
+                <a class="nav-link" href="/show-teams">Team list</a>
+                <a class="nav-link" href="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container my-5">
+    <h2 class="mb-5">New Task</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="#" th:action="@{/add-task}" th:object="${task}" method="post">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="id" class="col-form-label">Id</label>
+                        <input type="number" th:field="*{id}" class="form-control" id="id" placeholder="Id">
+<!--                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>-->
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="team_id" class="col-form-label">Team Id number</label>
+                        <input type="text" th:field="*{team}" class="form-control" id="team_id" placeholder="Team Id number">
+<!--                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>-->
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="content" class="col-form-label">Task content</label>
+                        <input type="text" th:field="*{taskContent}" class="form-control" id="content" placeholder="Task content">
+                        <!--                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>-->
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="date" class="col-form-label">Date of completion</label>
+                        <input type="datetime-local" th:field="*{dateOfCompletion}" class="form-control" id="date" placeholder="Date of completion">
+                        <!--                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>-->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-5">
+                        <input type="submit" class="btn btn-primary" value="Add task">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

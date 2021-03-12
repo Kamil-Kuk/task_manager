@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -23,26 +21,11 @@ public class Team {
 
     private String teamName;
 
-//    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JsonIgnore
-//    private List<Task> teamTasks = new ArrayList<>();
-
-//    @OneToMany(mappedBy = "team", cascade = CascadeType.PERSIST)
-//    private Set<Employee> employees = new HashSet<>();
-
-//    @OneToMany(cascade = CascadeType.PERSIST)
-//    private Set<Task> teamTasks = new HashSet<>();
-//
     @OneToMany(cascade = CascadeType.MERGE)
     @JsonIgnore
     private List<Employee> employees = new ArrayList<>();
 
-//    public void setTeamTasks(List<Task> teamTasks) {
-//        this.teamTasks = teamTasks;
-//        teamTasks.forEach(task -> task.setTeam(this));
-//    }
-
-    public void setEmployee(Employee employee){
+    public void setEmployee(Employee employee) {
         this.employees.add(employee);
     }
 

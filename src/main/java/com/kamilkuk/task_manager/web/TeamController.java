@@ -19,27 +19,27 @@ public class TeamController {
     private final TeamService teamService;
 
     @GetMapping("{id}")
-    public ResponseEntity<Team> get(@PathVariable Long id){
+    public ResponseEntity<Team> get(@PathVariable Long id) {
         return ResponseEntity.ok(teamService.get(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<Team>> getAll(){
+    public ResponseEntity<List<Team>> getAll() {
         return ResponseEntity.ok(teamService.getAll());
     }
 
     @PostMapping
-    public ResponseEntity<Team> save(@RequestBody Team team){
+    public ResponseEntity<Team> save(@RequestBody Team team) {
         return ResponseEntity.ok(teamService.save(team));
     }
 
     @PatchMapping
-    public ResponseEntity<Team> update(@RequestBody Team team){
+    public ResponseEntity<Team> update(@RequestBody Team team) {
         return ResponseEntity.ok(teamService.update(team));
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable Long id){
+    public ResponseEntity<Boolean> delete(@PathVariable Long id) {
         teamService.remove(id);
         return ResponseEntity.ok(true);
     }

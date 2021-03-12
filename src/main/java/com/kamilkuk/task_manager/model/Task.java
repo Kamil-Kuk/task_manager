@@ -1,6 +1,5 @@
 package com.kamilkuk.task_manager.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,10 +16,6 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-//    @ManyToOne
-//    @JoinColumn(name = "employee_id")
-//    private Employee employee;
 
     @ManyToOne
     @JoinColumn(name = "team_id")
