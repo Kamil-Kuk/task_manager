@@ -12,7 +12,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/index">Home</a>
+        <a class="navbar-brand">Task manager</a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link" href="/show-tasks">Task list</a>
@@ -23,37 +23,44 @@
         </div>
     </div>
 </nav>
+
+<div class="d-grid gap-2 d-md-block p-3">
+    <a href="/show-tasks" class="btn btn-secondary btn-sm" tabindex="-1" role="button" aria-disabled="false">Back</a>
+</div>
+
 <div class="container my-5">
     <h2 class="mb-5">New Task</h2>
     <div class="row">
         <div class="col-md-6">
             <form action="#" th:action="@{/add-task}" th:object="${task}" method="post">
                 <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="id" class="col-form-label">Id</label>
-                        <input type="number" th:field="*{id}" class="form-control" id="id" placeholder="Id">
-<!--                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>-->
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="team_id" class="col-form-label">Team Id number</label>
-                        <input type="text" th:field="*{team}" class="form-control" id="team_id" placeholder="Team Id number">
+
+                    <div class="form-group col-5">
+                        <label class="col-form-label">Assigned team</label>
+                        <select th:field="*{team}">
+                            <option th:each="i : ${teams}" th:value="${i.getId()}" th:text="${i.getTeamName()}"></option>
+                        </select>
+<!--                        <input type="text" th:field="*{team}" class="form-control" id="team_id" placeholder="Team Id number">-->
 <!--                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>-->
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="content" class="col-form-label">Task content</label>
-                        <input type="text" th:field="*{taskContent}" class="form-control" id="content" placeholder="Task content">
-                        <!--                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>-->
-                    </div>
-                    <div class="form-group col-md-6">
+
+                    <div class="form-group col-5">
                         <label for="date" class="col-form-label">Date of completion</label>
                         <input type="date" th:field="*{dateOfCompletion}" class="form-control" id="date" placeholder="Date of completion">
                         <!--                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>-->
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mt-5">
-                        <input type="submit" class="btn btn-primary" value="Add task">
+
+                    <div class="form-group col-12">
+                        <label for="content" class="col-form-label">Task content</label>
+                        <textarea th:field="*{taskContent}" class="scrollabletextbox form-control" id="content" placeholder="Task content" maxlength="350"></textarea>
+                        <!--                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>-->
                     </div>
+
+                    <div class="d-grid gap-2 d-md-block p-3">
+                        <input type="submit" class="btn btn-primary" value="Add task">
+                        <input type="reset" class="btn btn-secondary" value="Reset">
+                    </div>
+
                 </div>
             </form>
         </div>

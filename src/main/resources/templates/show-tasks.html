@@ -45,7 +45,7 @@
                     <tbody>
                     <tr th:each="task : ${tasks}">
                         <td th:text="${task.id}"></td>
-                        <td th:text="${task.team}"></td>
+                        <td th:text="${task.getTeam().getTeamName()}"></td>
                         <td th:text="${task.taskContent}"></td>
                         <td th:text="${task.dateOfCompletion}"></td>
                     </tr>

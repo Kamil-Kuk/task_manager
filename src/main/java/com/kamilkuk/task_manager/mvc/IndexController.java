@@ -1,6 +1,7 @@
 package com.kamilkuk.task_manager.mvc;
 
 import com.kamilkuk.task_manager.model.Task;
+import com.kamilkuk.task_manager.model.Team;
 import com.kamilkuk.task_manager.service.EmployeeService;
 import com.kamilkuk.task_manager.service.TaskService;
 import com.kamilkuk.task_manager.service.TeamService;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -46,17 +48,21 @@ public class IndexController {
     }
 
     @GetMapping("/add-task")
-    public String showAddTaskForm(Task task) {
+    public String showAddTaskForm(Task task, Model model) {
+        model.addAttribute("teams", teamService.getAll());
         return "add-task";
     }
 
 
     @PostMapping("/add-task")
-    public String addTask(Task task, BindingResult result, Model model) {
+    public String addTask(Task task,
+                          @ModelAttribute("team") Long team,
+                          BindingResult result,
+                          Model model) {
         if (result.hasErrors()) {
             return "add-task";
         }
-        taskService.save(task);
-        return "redirect:/index";
+        taskService.saveForTeam(team, task);
+        return "redirect:/show-tasks";
     }
 }

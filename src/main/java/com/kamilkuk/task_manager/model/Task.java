@@ -3,9 +3,11 @@ package com.kamilkuk.task_manager.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Data
 @NoArgsConstructor
@@ -23,5 +25,11 @@ public class Task {
 
     private String taskContent;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfCompletion;
+
+//    public Task(String taskContent, String dateOfCompletion) {
+//        this.taskContent = taskContent;
+//        this.dateOfCompletion = LocalDate.parse(dateOfCompletion, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+//    }
 }
