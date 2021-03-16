@@ -35,7 +35,6 @@
         <label for="assignedTeamFormControl">Assigned team</label>
         <select class="form-control" id="assignedTeamFormControl" th:field="*{team}">
             <option th:each="i : ${teams}" th:value="${i.getId()}" th:text="${i.getTeamName()}"></option>
-
         </select>
     </div>
 
@@ -47,6 +46,11 @@
     <div class="form-group">
         <label for="contentFormControl">Example textarea</label>
         <textarea class="scrollabletextbox form-control" id="contentFormControl" th:field="*{taskContent}" placeholder="Task content" rows="3" maxlength="350"></textarea>
+    </div>
+
+    <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+        <p th:each="err : ${#fields.errors('dateOfCompletion')}" th:text="${err}">Incorrect input</p>
+        <p th:each="err : ${#fields.errors('taskContent')}" th:text="${err}">Incorrect input</p>
     </div>
 
     <div class="d-grid gap-2 d-md-block p-3">

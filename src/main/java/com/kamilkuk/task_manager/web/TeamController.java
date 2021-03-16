@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,12 +30,12 @@ public class TeamController {
     }
 
     @PostMapping
-    public ResponseEntity<Team> save(@RequestBody Team team) {
+    public ResponseEntity<Team> save(@Valid @RequestBody Team team) {
         return ResponseEntity.ok(teamService.save(team));
     }
 
     @PatchMapping
-    public ResponseEntity<Team> update(@RequestBody Team team) {
+    public ResponseEntity<Team> update(@Valid @RequestBody Team team) {
         return ResponseEntity.ok(teamService.update(team));
     }
 

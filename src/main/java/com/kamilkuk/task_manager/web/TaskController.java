@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,18 +31,17 @@ public class TaskController {
 
 
     @PostMapping("/teams/{teamId}/task")
-    public ResponseEntity<Task> saveForTeam(@PathVariable Long teamId, @RequestBody Task task) {
+    public ResponseEntity<Task> saveForTeam(@PathVariable Long teamId, @Valid @RequestBody Task task) {
         return ResponseEntity.ok(taskService.saveForTeam(teamId, task));
     }
 
     @PatchMapping("/tasks")
-    public ResponseEntity<Task> update(@RequestBody Task task) {
+    public ResponseEntity<Task> update(@Valid @RequestBody Task task) {
         return ResponseEntity.ok(taskService.update(task));
     }
 
-
     @PatchMapping("/teams/{teamId}/task/{taskId}")
-    public ResponseEntity<Task> assignToTeam(@PathVariable Long teamId, @PathVariable Long taskId, @RequestBody Task task) {
+    public ResponseEntity<Task> assignToTeam(@PathVariable Long teamId, @PathVariable Long taskId, @Valid @RequestBody Task task) {
         return ResponseEntity.ok(taskService.assignToTeam(teamId, taskId, task));
     }
 

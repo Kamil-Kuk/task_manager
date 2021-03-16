@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -27,12 +28,12 @@ public class EmployeeController {
 
 
     @PostMapping("/teams/{teamId}/employee")
-    public ResponseEntity<Employee> saveForTeam(@PathVariable Long teamId, @RequestBody Employee employee) {
+    public ResponseEntity<Employee> saveForTeam(@PathVariable Long teamId, @Valid @RequestBody Employee employee) {
         return ResponseEntity.ok(employeeService.saveForTeam(teamId, employee));
     }
 
     @PatchMapping("/teams/{teamId}/employee/{employeeId}")
-    public ResponseEntity<Employee> assignToTeam(@PathVariable Long teamId, @PathVariable Long employeeId, @RequestBody Employee employee) {
+    public ResponseEntity<Employee> assignToTeam(@PathVariable Long teamId, @PathVariable Long employeeId, @Valid @RequestBody Employee employee) {
         return ResponseEntity.ok(employeeService.assignToTeam(teamId, employeeId, employee));
     }
 
