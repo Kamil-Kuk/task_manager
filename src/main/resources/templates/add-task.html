@@ -28,43 +28,33 @@
     <a href="/show-tasks" class="btn btn-secondary btn-sm" tabindex="-1" role="button" aria-disabled="false">Back</a>
 </div>
 
-<div class="container my-5">
+<div class="container my-10">
+<form action="#" th:action="@{/add-task}" th:object="${task}" method="post">
     <h2 class="mb-5">New Task</h2>
-    <div class="row">
-        <div class="col-md-6">
-            <form action="#" th:action="@{/add-task}" th:object="${task}" method="post">
-                <div class="row">
+    <div class="form-group">
+        <label for="assignedTeamFormControl">Assigned team</label>
+        <select class="form-control" id="assignedTeamFormControl" th:field="*{team}">
+            <option th:each="i : ${teams}" th:value="${i.getId()}" th:text="${i.getTeamName()}"></option>
 
-                    <div class="form-group col-5">
-                        <label class="col-form-label">Assigned team</label>
-                        <select th:field="*{team}">
-                            <option th:each="i : ${teams}" th:value="${i.getId()}" th:text="${i.getTeamName()}"></option>
-                        </select>
-<!--                        <input type="text" th:field="*{team}" class="form-control" id="team_id" placeholder="Team Id number">-->
-<!--                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>-->
-                    </div>
-
-                    <div class="form-group col-5">
-                        <label for="date" class="col-form-label">Date of completion</label>
-                        <input type="date" th:field="*{dateOfCompletion}" class="form-control" id="date" placeholder="Date of completion">
-                        <!--                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>-->
-                    </div>
-
-                    <div class="form-group col-12">
-                        <label for="content" class="col-form-label">Task content</label>
-                        <textarea th:field="*{taskContent}" class="scrollabletextbox form-control" id="content" placeholder="Task content" maxlength="350"></textarea>
-                        <!--                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>-->
-                    </div>
-
-                    <div class="d-grid gap-2 d-md-block p-3">
-                        <input type="submit" class="btn btn-primary" value="Add task">
-                        <input type="reset" class="btn btn-secondary" value="Reset">
-                    </div>
-
-                </div>
-            </form>
-        </div>
+        </select>
     </div>
+
+        <div class="form-group">
+            <label for="dateFormControl">Date of completion</label>
+            <input type="date" class="form-control" th:field="*{dateOfCompletion}" id="dateFormControl">
+        </div>
+
+    <div class="form-group">
+        <label for="contentFormControl">Example textarea</label>
+        <textarea class="scrollabletextbox form-control" id="contentFormControl" th:field="*{taskContent}" placeholder="Task content" rows="3" maxlength="350"></textarea>
+    </div>
+
+    <div class="d-grid gap-2 d-md-block p-3">
+        <input type="submit" class="btn btn-primary" value="Add task">
+        <input type="reset" class="btn btn-secondary" value="Reset">
+    </div>
+</form>
 </div>
+
 </body>
 </html>
