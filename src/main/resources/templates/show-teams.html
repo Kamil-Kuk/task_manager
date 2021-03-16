@@ -42,11 +42,25 @@
                     </tr>
                     </thead>
                     <tbody>
+
+<!--                    <tr th:each="team : ${teams}">-->
+<!--                        <td th:text="${team.id}"></td>-->
+<!--                        <td th:text="${team.teamName}"></td>-->
+<!--                        <td th:each="employee : ${team.employees}" th:text="${employee.nameEmployee}"></td>-->
+<!--                    </tr>-->
+
+
+
                     <tr th:each="team : ${teams}">
-                        <td th:text="${team.id}"></td>
+                        <td rowspan=1 th:text="${team.id}"></td>
                         <td th:text="${team.teamName}"></td>
-                        <td th:text="${team.employees}"></td>
+                        <td>
+                            <ul class="list-unstyled">
+                                <li th:each="employee : ${team.employees}" th:text="${employee.nameEmployee}"></li>
+                            </ul>
+                        </td>
                     </tr>
+
                     </tbody>
                 </table>
             </div>
