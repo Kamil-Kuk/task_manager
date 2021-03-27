@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/shards.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand">Task manager</a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/show-tasks">Task list</a>
+                <a class="nav-link" href="/show-employees">Employee list</a>
+                <a class="nav-link" href="/show-teams">Team list</a>
+                <a class="nav-link" href="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="d-grid gap-2 d-md-block p-3">
+    <a href="/show-employees" class="btn btn-secondary btn-sm" tabindex="-1" role="button" aria-disabled="false">Back</a>
+</div>
+
+<div class="container my-10">
+    <form action="#" th:action="@{/add-employee}" th:object="${employee}" method="post">
+        <h2 class="mb-5">New employee</h2>
+
+        <div class="form-group">
+            <label for="nameFormControl">Employee's full name</label>
+            <input type="text" class="form-control" th:field="*{nameEmployee}" id="nameFormControl">
+        </div>
+
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+            <p th:each="err : ${#fields.errors('nameEmployee')}" th:text="${err}">Incorrect input</p>
+        </div>
+
+        <div class="d-grid gap-2 d-md-block p-3">
+            <input type="submit" class="btn btn-primary" value="Add employee">
+            <input type="reset" class="btn btn-secondary" value="Reset">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

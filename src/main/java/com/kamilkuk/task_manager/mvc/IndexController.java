@@ -1,5 +1,6 @@
 package com.kamilkuk.task_manager.mvc;
 
+import com.kamilkuk.task_manager.model.Employee;
 import com.kamilkuk.task_manager.model.Task;
 import com.kamilkuk.task_manager.model.Team;
 import com.kamilkuk.task_manager.service.EmployeeService;
@@ -67,4 +68,42 @@ public class IndexController {
         taskService.saveForTeam(team, task);
         return "redirect:/show-tasks";
     }
+
+    @GetMapping("/add-employee")
+    public String showAddEmployeeForm(Employee employee, Model model) {
+
+        model.addAttribute("teams", teamService.getAll());
+        return "add-employee";
+    }
+
+
+    @PostMapping("/add-employee")
+    public String addEmployee(@Valid Employee employee,
+                          Errors error) {
+        if (error.hasErrors()) {
+            return "add-employee";
+        }
+        employeeService.save(employee);
+        return "redirect:/show-employees";
+    }
+
+//    @GetMapping("/add-team")
+//    public String showAddTeamForm(Team team, Model model) {
+//        model.addAttribute("employees", employeeService.getAll());
+//        return "add-team";
+//    }
+//
+//
+//    @PostMapping("/add-team")
+//    public String addTeam(@Valid Team team,
+//                          @ModelAttribute("employee") Long employee,
+//
+//                              Errors error) {
+//        if (error.hasErrors()) {
+//            return "add-team";
+//        }
+//        team.getEmployees().add(employeeService.get(employee));
+//        teamService.save(team);
+//        return "redirect:/show-teams";
+//    }
 }

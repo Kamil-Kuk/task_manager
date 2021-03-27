@@ -27,6 +27,11 @@ public class EmployeeController {
     }
 
 
+    @PostMapping("/employees")
+    public ResponseEntity<Employee> save(@Valid @RequestBody Employee employee) {
+        return ResponseEntity.ok(employeeService.save(employee));
+    }
+
     @PostMapping("/teams/{teamId}/employee")
     public ResponseEntity<Employee> saveForTeam(@PathVariable Long teamId, @Valid @RequestBody Employee employee) {
         return ResponseEntity.ok(employeeService.saveForTeam(teamId, employee));

@@ -28,7 +28,7 @@ public class Team {
 
     @OneToMany(cascade = CascadeType.MERGE)
     @JsonIgnore
-    @NotEmpty
+    @NotEmpty(message = "Must assign at least one employee")
     private List<Employee> employees = new ArrayList<>();
 
     public void setEmployee(Employee employee) {
